@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Material Paper Element</title>
+  
+  <!-- Import the Custom Element from your node_modules -->
+  <script type="module">
+    import '@polymer/paper-material/paper-material.js';
+  </script>
+
+  <style>
+    body {
+      background-color: #f5f5f5; /* Light grey background emphasizes the paper lift */
+      font-family: 'Roboto', sans-serif;
+      padding: 40px;
+    }
+    
+    /* Style your custom elements or inner content */
+    paper-material {
+      background: white;
+      border-radius: 4px;
+      padding: 24px;
+      margin: 16px;
+      display: inline-block;
+      min-width: 250px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Elevation 1: Subtle, close to the screen -->
+  <paper-material elevation="1">
+    <h3>Elevation 1</h3>
+    <p>Low-altitude lifted paper container.</p>
+  </paper-material>
+
+  <!-- Elevation 3: Medium lift, standard card look -->
+  <paper-material elevation="3">
+    <h3>Elevation 3</h3>
+    <p>Standard card layout shadow definition.</p>
+  </paper-material>
+
+  <!-- Elevation 5: High lift, great for dropdowns or dialogs -->
+  <paper-material elevation="5">
+    <h3>Elevation 5</h3>
+    <p>High-altitude floating paper effect.</p>
+  </paper-material>
+
+</body>
+</html>
