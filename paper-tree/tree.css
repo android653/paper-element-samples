@@ -1,0 +1,78 @@
+/* Container & Typography Setup */
+.paper-tree {
+  font-family: 'Roboto', sans-serif;
+  color: #212121;
+  user-select: none; /* Prevents text highlighting while clicking */
+}
+
+/* Remove default browser list indicators */
+.paper-tree ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.paper-tree .tree-root {
+  padding-left: 0;
+}
+
+/* Base style for clickable headers and files */
+.tree-node, .tree-leaf {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+/* Hide default browser details marker triangle */
+.tree-node {
+  list-style: none;
+}
+.tree-node::-webkit-details-marker {
+  display: none;
+}
+
+/* Material Hover States */
+.tree-node:hover, .tree-leaf:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+/* Icon Spacing and Sizing */
+.paper-tree .material-icons {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+/* Subtle gray styling for folder indicators and asset types */
+.paper-tree .arrow {
+  color: #757575;
+  transition: transform 0.2s ease;
+  margin-right: 4px;
+}
+
+.paper-tree .icon {
+  color: #757575;
+}
+
+/* --- INTERACTIVE STATE --- */
+
+/* Rotate the arrow downward when folder details expand */
+details[open] > .tree-node .arrow {
+  transform: rotate(90deg);
+}
+
+/* Change folder color when open */
+details[open] > .tree-node .icon {
+  color: #009688; /* Material Teal accent */
+}
+
+/* Give leaves identical indents as folders */
+.tree-leaf {
+  padding-left: 36px; /* Offsets missing arrow to align perfectly */
+}
+
+.node-label {
+  font-size: 14px;
+}
