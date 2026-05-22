@@ -1,0 +1,105 @@
+.checkbox-group {
+  padding: 16px;
+}
+
+/* Flex layout wrapper to align box and label */
+.paper-checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #212121;
+}
+
+/* Container for positioning internal elements */
+.paper-checkbox {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hidden native input layer handles form data accessibility */
+.paper-checkbox__native {
+  position: absolute;
+  opacity: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Visual frame of the box */
+.paper-checkbox__frame {
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #5a5a5a;
+  border-radius: 2px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background-color 0.14s ease, border-color 0.14s ease;
+}
+
+/* Checkmark character geometry settings */
+.paper-checkbox__checkmark {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  transform: scale(0);
+  transition: transform 0.14s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Background Ripple Overlay Ring Layer */
+.paper-checkbox__frame::after {
+  content: '';
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  top: -9px;
+  left: -9px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(0);
+  transition: transform 0.16s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hover and focus ring expansion states */
+.paper-checkbox:hover .paper-checkbox__frame::after,
+.paper-checkbox__native:focus-visible ~ .paper-checkbox__frame::after {
+  transform: scale(1);
+}
+
+/* ------------------------------------------------------------- */
+/* Active Checked States (Color transitions to Indigo theme)     */
+/* ------------------------------------------------------------- */
+
+/* Fill background frame color with primary color */
+.paper-checkbox__native:checked ~ .paper-checkbox__frame {
+  background-color: #3f51b5;
+  border-color: #3f51b5;
+}
+
+/* Scale up checkmark symbol visibility cleanly */
+.paper-checkbox__native:checked ~ .paper-checkbox__frame .paper-checkbox__checkmark {
+  transform: scale(1);
+}
+
+/* Active ripple accent shifts to clean theme glow color */
+.paper-checkbox__native:checked ~ .paper-checkbox__frame::after {
+  background-color: rgba(63, 81, 181, 0.12);
+}
