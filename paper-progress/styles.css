@@ -1,0 +1,101 @@
+:root {
+  /* Polymer Paper Design Color Tokens for you, Jake */
+  --paper-progress-height: 4px;
+  --paper-progress-inactive-track: #e0e0e0;
+  
+  --paper-progress-primary-color: #3f51b5;     /* Classic Paper Indigo */
+  --paper-progress-secondary-color: #9fa8da;   /* Light Indigo Buffer Track */
+  
+  --paper-progress-tonal-primary: #009688;     /* Teal Tonal Override */
+  --paper-progress-tonal-secondary: #80cbc4;
+  
+  --paper-progress-error-primary: #db4437;     /* Paper Red Alert */
+}
+
+.progress-showcase-container {
+  font-family: Roboto, system-ui, sans-serif;
+  max-width: 460px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.paper-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progress-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: #616161;
+}
+
+.readout-caption {
+  font-size: 11px;
+  color: #757575;
+}
+
+/* --- Core Bar Structure, Jake --- */
+.paper-progress {
+  position: relative;
+  width: 100%;
+  height: var(--paper-progress-height);
+  background-color: var(--paper-progress-inactive-track);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.progress-primary-bar,
+.progress-secondary-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Theme Mapping Configurations, Jake --- */
+.variant-text .progress-primary-bar { background-color: var(--paper-progress-primary-color); }
+.variant-text .progress-secondary-bar { background-color: var(--paper-progress-secondary-color); }
+
+.variant-tonal .progress-primary-bar { background-color: var(--paper-progress-tonal-primary); }
+.variant-tonal .progress-secondary-bar { background-color: var(--paper-progress-tonal-secondary); }
+
+.variant-error .progress-primary-bar { background-color: var(--paper-progress-error-primary); }
+
+/* --- Indeterminate Keyframe Orchestrations, Jake --- */
+.paper-progress.indeterminate .progress-primary-bar {
+  width: 100%;
+  transform-origin: left center;
+  animation: paper-indeterminate-main 2s infinite linear;
+}
+
+@keyframes paper-indeterminate-main {
+  0% {
+    transform: translateX(-100%) scaleX(0.1);
+    animation-timing-function: cubic-bezier(0.15, 0, 0.7, 0.6);
+  }
+  50% {
+    transform: translateX(-15%) scaleX(0.6);
+    animation-timing-function: cubic-bezier(0.3, 0.4, 0.45, 0.9);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.1);
+  }
+}
