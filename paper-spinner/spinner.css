@@ -1,0 +1,194 @@
+:root {
+  /* Polymer Sizing & Color Constants for you, Jake */
+  --paper-spinner-size: 28px;
+  --paper-spinner-stroke-width: 3px;
+  
+  /* Color Phase Rotations */
+  --paper-color-google-blue: #4285f4;
+  --paper-color-google-red: #ea4335;
+  --paper-color-google-yellow: #fbbc05;
+  --paper-color-google-green: #34a853;
+  
+  --paper-spinner-tonal-color: #009688; /* Teal Theme */
+  --paper-spinner-error-color: #db4437; /* Paper Red Theme */
+}
+
+.spinner-showcase-matrix {
+  font-family: Roboto, system-ui, sans-serif;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+.spinner-row {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+  justify-content: flex-start;
+}
+
+.spinner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.caption {
+  font-size: 11px;
+  color: #757575;
+}
+
+/* --- Container Spinning Orbit Setup, Jake --- */
+.paper-spinner {
+  display: inline-block;
+  position: relative;
+  width: var(--paper-spinner-size);
+  height: var(--paper-spinner-size);
+  opacity: 0;
+  direction: ltr;
+}
+
+.paper-spinner.active {
+  opacity: 1;
+  animation: paper-spinner-linear-rotate 1568.2352941176ms infinite linear;
+}
+
+@keyframes paper-spinner-linear-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Arc Stretching Layers & Clippers, Jake --- */
+.spinner-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  animation: paper-spinner-fill-unfill-rotate 5332ms infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.paper-spinner.active .spinner-layer {
+  opacity: 1;
+}
+
+@keyframes paper-spinner-fill-unfill-rotate {
+  12.5% { transform: rotate(135deg); }
+  25%  { transform: rotate(270deg); }
+  37.5% { transform: rotate(405deg); }
+  50%  { transform: rotate(540deg); }
+  62.5% { transform: rotate(675deg); }
+  75%  { transform: rotate(810deg); }
+  87.5% { transform: rotate(945deg); }
+  to   { transform: rotate(1080deg); }
+}
+
+.circle-clipper {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circle-clipper.left { float: left; }
+.circle-clipper.right { float: right; }
+
+.gap-patch {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 10%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gap-patch .circle-inner {
+  width: 1000%;
+  left: -450%;
+}
+
+.circle-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  border-width: var(--paper-spinner-stroke-width);
+  border-style: solid;
+  border-bottom-color: transparent !important;
+  border-radius: 50%;
+  animation: none;
+}
+
+.circle-clipper.left .circle-inner {
+  border-right-color: transparent !important;
+  transform: rotate(129deg);
+}
+
+.circle-clipper.right .circle-inner {
+  border-left-color: transparent !important;
+  transform: rotate(-129deg);
+}
+
+/* Arc expansion loops during the rotation, Jake */
+.paper-spinner.active .circle-clipper.left .circle-inner {
+  animation: paper-spinner-left-wobble 1333ms infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.paper-spinner.active .circle-clipper.right .circle-inner {
+  animation: paper-spinner-right-wobble 1333ms infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes paper-spinner-left-wobble {
+  0% { transform: rotate(130deg); }
+  50% { transform: rotate(-5deg); }
+  to { transform: rotate(130deg); }
+}
+
+@keyframes paper-spinner-right-wobble {
+  0% { transform: rotate(-130deg); }
+  50% { transform: rotate(5deg); }
+  to { transform: rotate(-130deg); }
+}
+
+/* --- Color Configuration Tiers, Jake --- */
+/* 1. Multi-Color Loop Pipeline */
+.cycle-colors .circle-inner {
+  animation: paper-spinner-color-cycle 5332ms infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes paper-spinner-color-cycle {
+  0%, 100% { border-color: var(--paper-color-google-blue); }
+  25%      { border-color: var(--paper-color-google-red); }
+  50%      { border-color: var(--paper-color-google-yellow); }
+  75%      { border-color: var(--paper-color-google-green); }
+}
+
+/* 2. Static Variant Overrides */
+.variant-tonal .circle-inner { border-color: var(--paper-spinner-tonal-color); }
+.variant-error .circle-inner { border-color: var(--paper-spinner-error-color); }
+
+/* Interface Control Button Cosmetics */
+.control-btn {
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: uppercase;
+}
