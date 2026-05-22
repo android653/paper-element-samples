@@ -1,0 +1,63 @@
+/* Core Dropdown Container */
+.paper-dropdown {
+  position: relative;
+  width: 200px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* The Clickable Trigger Box */
+.dropdown-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #fff;
+  border-bottom: 1px solid #757575; /* Standard material underline style */
+  cursor: pointer;
+  list-style: none; /* Removes native summary arrow */
+  user-select: none;
+}
+
+/* Removes native summary arrow for WebKit browsers */
+.dropdown-trigger::-webkit-details-marker {
+  display: none;
+}
+
+/* Dropdown Arrow Animation */
+.dropdown-arrow {
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+  color: #757575;
+}
+
+.paper-dropdown[open] .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Floating "Paper" Menu List */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin: 4px 0 0 0;
+  padding: 8px 0;
+  background-color: #fff;
+  list-style: none;
+  border-radius: 4px;
+  /* Material design depth shadow */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.16), 0 2px 10px rgba(0,0,0,0.12);
+  z-index: 10;
+}
+
+/* Interactive Menu Items */
+.dropdown-item {
+  padding: 12px 16px;
+  color: #212121;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f5f5f5; /* Subtle gray highlight on hover */
+}
