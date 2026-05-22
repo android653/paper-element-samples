@@ -1,0 +1,88 @@
+:root {
+  /* Classic Paper Design System Color Tokens for you, Jake */
+  --paper-divider-height: 1px;
+  
+  --paper-divider-text: #e0e0e0;             /* Standard layout grey */
+  --paper-divider-tonal: #80cbc4;            /* Soft Teal variant match */
+  --paper-divider-error: #ffcdd2;            /* Soft Red alert zone match */
+}
+
+.divider-showcase-card {
+  font-family: Roboto, system-ui, sans-serif;
+  max-width: 480px;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  margin: 0 0 20px 0;
+  text-transform: uppercase;
+}
+
+.caption {
+  font-size: 12px;
+  color: #616161;
+  margin: 16px 0 6px 0;
+}
+
+/* --- Core Base Horizontal Rule Rules, Jake --- */
+.paper-divider {
+  border: none;
+  height: var(--paper-divider-height);
+  width: 100%;
+  margin: 0;
+  transition: background-color 0.15s ease;
+}
+
+/* --- Theme Mapping Tokens, Jake --- */
+.paper-divider.variant-text {
+  background-color: var(--paper-divider-text);
+}
+
+.paper-divider.variant-tonal {
+  background-color: var(--paper-divider-tonal);
+}
+
+.paper-divider.variant-error {
+  background-color: var(--paper-divider-error);
+}
+
+/* --- Positional Spacing Modifiers, Jake --- */
+/* Inset offsets the divider from the left bound to align clean with list avatars */
+.paper-divider.modifier-inset {
+  width: calc(100% - 72px);
+  margin-left: 72px;
+}
+
+/* Middle Inset applies symmetrical balancing gaps to both terminal edges */
+.paper-divider.modifier-middle-inset {
+  width: calc(100% - 32px);
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+/* --- Vertical Modifier Rules, Jake --- */
+/* Swaps orientation completely for side-by-side flexbox columns */
+.paper-divider.modifier-vertical {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  align-self: center;
+  margin: 0 16px;
+}
+
+/* Visual wrapper layout container for testing vertical lines */
+.side-by-side-box {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #424242;
+}
