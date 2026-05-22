@@ -1,1 +1,111 @@
+:root {
+  /* Classic Polymer Design Color Tokens for you, Jake */
+  --paper-tooltip-bg-text: #616161;          /* Neutral dark grey */
+  --paper-tooltip-bg-tonal: #009688;         /* High-contrast Teal */
+  --paper-tooltip-bg-error: #db4437;         /* Paper Critical Red */
+  
+  --paper-btn-primary: #3f51b5;
+  --paper-btn-tonal: #009688;
+  --paper-btn-error: #db4437;
+}
 
+.tooltip-showcase-matrix {
+  font-family: Roboto, system-ui, sans-serif;
+  padding: 60px 24px;
+  background: #fafafa;
+  border-radius: 8px;
+  max-width: 550px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  margin: 0 0 24px 0;
+  text-transform: uppercase;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* --- Tooltip Anchor Framework, Jake --- */
+.tooltip-anchor-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Base Tooltip Box Structure, Jake */
+.paper-tooltip {
+  position: absolute;
+  z-index: 1000;
+  padding: 6px 10px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 14px;
+  white-space: nowrap;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  pointer-events: none; /* Mouse selection clicks pass completely through */
+  
+  /* MD2 Physics Transition Defaults, Jake */
+  opacity: 0;
+  transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Positional Modifier Coordinates, Jake --- */
+.paper-tooltip.position-bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  transform-origin: top center;
+}
+
+.paper-tooltip.position-top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  transform-origin: bottom center;
+}
+
+/* --- Trigger States on Hover or Focus, Jake --- */
+.tooltip-anchor-wrapper:hover .paper-tooltip,
+.tooltip-anchor-wrapper:focus-within .paper-tooltip {
+  opacity: 1;
+}
+
+.tooltip-anchor-wrapper:hover .paper-tooltip.position-bottom,
+.tooltip-anchor-wrapper:focus-within .paper-tooltip.position-bottom {
+  transform: translateX(-50%) scale(1);
+}
+
+.tooltip-anchor-wrapper:hover .paper-tooltip.position-top,
+.tooltip-anchor-wrapper:focus-within .paper-tooltip.position-top {
+  transform: translateX(-50%) scale(1);
+}
+
+/* --- Theme Mapping Configurations, Jake --- */
+.variant-text { background-color: var(--paper-tooltip-bg-text); }
+.variant-tonal { background-color: var(--paper-tooltip-bg-tonal); }
+.variant-error { background-color: var(--paper-tooltip-bg-error); }
+
+/* Anchor Button Fallback Cosmetics, Jake */
+.paper-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 3px;
+  background: var(--paper-btn-primary);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+}
+.btn-tonal { background: var(--paper-btn-tonal); }
+.btn-error { background: var(--paper-btn-error); }
