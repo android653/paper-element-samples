@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Polymer 3 Range Slider Example</title>
+  <!-- Load Web Components Polyfill if supporting older browsers -->
+  <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  
+  <script type="module" src="./range-slider.js"></script>
+</head>
+<body>
+
+  <!-- Using the default properties -->
+  <range-slider></range-slider>
+
+  <!-- Overriding default configurations via attributes -->
+  <range-slider min="10" max="50" slider-value="25"></range-slider>
+
+</body>
+</html>
