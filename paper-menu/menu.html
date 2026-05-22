@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Polymer Menu Matrix Variations</title>
+  <script type="module" src="paper-menu.js"></script>
+  <style>
+    body {
+      font-family: Roboto, system-ui, sans-serif;
+      padding: 40px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .action-panel {
+      display: flex;
+      gap: 16px;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 4px;
+      box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+    }
+
+    .paper-btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 3px;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 13px;
+      text-transform: uppercase;
+      background: #3f51b5; /* Paper Indigo */
+      color: white;
+      box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    }
+
+    .btn-tonal { background: #009688; } /* Paper Teal */
+    .btn-error { background: #db4437; } /* Paper Red */
+
+    /* --- Theme Token Configuration Sets, Jake --- */
+    .theme-text {
+      --paper-menu-bg: #ffffff;
+      --paper-menu-accent: #3f51b5;
+    }
+
+    .theme-tonal {
+      --paper-menu-bg: #e0f2f1; /* Tonal background layout hue */
+      --paper-menu-color: #004d40;
+      --paper-menu-hover-bg: rgba(0, 77, 64, 0.05);
+      --paper-menu-focus-bg: rgba(0, 77, 64, 0.1);
+      --paper-menu-accent: #009688;
+    }
+
+    .theme-error {
+      --paper-menu-bg: #ffebee; /* Warning threat notification matrix */
+      --paper-menu-color: #b71c1c;
+      --paper-menu-hover-bg: rgba(183, 28, 28, 0.05);
+      --paper-menu-focus-bg: rgba(183, 28, 28, 0.1);
+      --paper-menu-accent: #db4437;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Material Selection Overlays (Jake)</h2>
+  
+  <div class="action-panel">
+    <!-- Menu Action Triggers, Jake -->
+    <button class="paper-btn" data-menu-trigger onclick="openTargetMenu('menuText', this)">Indigo Actions</button>
+    <button class="paper-btn btn-tonal" data-menu-trigger onclick="openTargetMenu('menuTonal', this)">Teal Filters</button>
+    <button class="paper-btn btn-error" data-menu-trigger onclick="openTargetMenu('menuError', this)">Cache Sweep</button>
+  </div>
+
+  <!-- 1. STANDARD TEXT MENU -->
+  <paper-menu class="theme-text" id="menuText">
+    <paper-menu-item onclick="executeAction('Save Cluster')">Save Data Shard <span slot="shortcut">Ctrl+S</span></paper-menu-item>
+    <paper-menu-item onclick="executeAction('Sync Profile')">Sync Workspace <span slot="shortcut">Ctrl+Y</span></paper-menu-item>
+    <paper-menu-item disabled>Import Caches</paper-menu-item>
+  </paper-menu>
+
+  <!-- 2. TONAL VARIANT MENU -->
+  <paper-menu class="theme-tonal" id="menuTonal">
+    <paper-menu-item onclick="executeAction('Dev Environment')">Development Stack</paper-menu-item>
+    <paper-menu-item onclick="executeAction('Prod Environment')">Production Cluster</paper-menu-item>
+  </paper-menu>
+
+  <!-- 3. TERTIARY / ERROR DANGER CONTEXT MENU -->
+  <paper-menu class="theme-error" id="menuError">
+    <paper-menu-item onclick="executeAction('Clear Memory')">Wipe Active Caches <span slot="shortcut">⚠️</span></paper-menu-item>
+    <paper-menu-item onclick="executeAction('Hard Partition Wipe')">Hard Format Partition</paper-menu-item>
+  </paper-menu>
+
+  <script>
+    // Central menu orchestration routines, Jake
+    function openTargetMenu(menuId, buttonEl) {
+      document.querySelectorAll('paper-menu').forEach(menu => {
+        if (menu.id !== menuId) menu.close();
+      });
+      
+      const targetMenu = document.getElementById(menuId);
+      if (targetMenu.classList.contains('visible')) {
+        targetMenu.close();
+      } else {
+        targetMenu.open(buttonEl);
+      }
+    }
+
+    function executeAction(msg) {
+      console.log(`Jake, processing dropdown menu routing operation: [${msg}]`);
+      document.querySelectorAll('paper-menu').forEach(menu => menu.close());
+    }
+  </script>
+
+</body>
+</html>
