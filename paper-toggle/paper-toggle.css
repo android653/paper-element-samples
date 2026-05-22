@@ -1,0 +1,55 @@
+/* Container for the toggle switch */
+.paper-toggle {
+  display: inline-block;
+  position: relative;
+  width: 36px;
+  height: 14px;
+  cursor: pointer;
+}
+
+/* Hide the ugly default browser checkbox */
+.toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The background pill-shaped track (OFF state) */
+.toggle-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #9e9e9e; /* Gray track */
+  border-radius: 7px;
+  transition: background-color 0.2s;
+}
+
+/* The circular knob (OFF state) */
+.toggle-track::before {
+  content: "";
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: -2px;
+  bottom: -3px;
+  background-color: #fafafa; /* White knob */
+  border-radius: 50%;
+  /* Material shadow to make it look like paper */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+/* --- ON STATE STYLES --- */
+
+/* Change the track color when checked */
+.toggle-input:checked + .toggle-track {
+  background-color: #b2dfdb; /* Light teal track */
+}
+
+/* Slide the knob and change its color when checked */
+.toggle-input:checked + .toggle-track::before {
+  transform: translateX(20px); /* Moves the circle to the right */
+  background-color: #009688; /* Dark teal knob */
+}
