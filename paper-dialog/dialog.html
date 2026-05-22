@@ -1,0 +1,26 @@
+<!-- Trigger Button -->
+<button id="openDialogBtn" class="paper-btn raised colored">Open Dialog</button>
+
+<!-- Backdrop Overlay Container -->
+<div id="dialogBackdrop" class="paper-dialog-overlay">
+  
+  <!-- Core Dialog Box Component -->
+  <div id="paperDialog" class="paper-dialog" role="dialog" aria-modal="true">
+    
+    <!-- 1. Header Area -->
+    <h2 class="paper-dialog__header">Reset settings?</h2>
+    
+    <!-- 2. Scrollable Body Content -->
+    <div class="paper-dialog__body">
+      <p>This will reset all application preferences back to factory defaults. This action cannot be undone and your local database storage will be completely cleared.</p>
+    </div>
+    
+    <!-- 3. Action Button Footer Layout -->
+    <div class="paper-dialog__actions">
+      <!-- Reusing your Text and Filled button specs from before -->
+      <button id="closeDialogBtn" class="paper-btn text">Cancel</button>
+      <button id="confirmDialogBtn" class="paper-btn text" style="color: #3f51b5;">Accept</button>
+    </div>
+
+  </div>
+</div>
