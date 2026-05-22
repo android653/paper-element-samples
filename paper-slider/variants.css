@@ -1,0 +1,134 @@
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 400px;
+  padding: 24px 12px;
+}
+
+.paper-slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paper-slider-label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #737373;
+  user-select: none;
+}
+
+/* Core Track Engineering Wrapper */
+.paper-slider {
+  position: relative;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Base Grey Track background */
+.paper-slider__track {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background-color: #bdbdbd;
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* Active Highlight Filler Line */
+.paper-slider__track-fill {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: #3f51b5;
+  pointer-events: none;
+}
+
+/* Floating Navigation Control Knob */
+.paper-slider__thumb {
+  position: absolute;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #3f51b5;
+  transform: translateX(-50%);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.1s;
+  outline: none;
+  z-index: 3;
+}
+
+.paper-slider:hover .paper-slider__thumb,
+.paper-slider__thumb:focus {
+  transform: translateX(-50%) scale(1.33);
+}
+
+/* Active Dragging Glow Layer */
+.paper-slider__thumb::after {
+  content: '';
+  position: absolute;
+  top: -12px; left: -12px; right: -12px; bottom: -12px;
+  background-color: rgba(63, 81, 181, 0.12);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.15s ease;
+  pointer-events: none;
+}
+.paper-slider.is-dragging .paper-slider__thumb::after {
+  transform: scale(1);
+}
+
+/* Pinned Value Balloon Layer */
+.paper-slider__pin {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  transform-origin: bottom center;
+  width: 28px;
+  height: 28px;
+  background-color: #3f51b5;
+  border-radius: 50% 50% 0 50%;
+  transform: translateX(-50%) rotate(-45deg) scale(0);
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Keep internal text straight up and down */
+.pin-value {
+  transform: rotate(45deg);
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.paper-slider--pinned:hover .paper-slider__pin,
+.paper-slider--pinned.is-dragging .paper-slider__pin {
+  transform: translateX(-50%) rotate(-45deg) scale(1);
+}
+
+/* Zero value layout states matching old spec (Clear circle at 0) */
+.paper-slider.is-zero .paper-slider__track-fill {
+  width: 0% !important;
+}
+.paper-slider.is-zero .paper-slider__thumb {
+  background-color: transparent;
+  border: 2px solid #bdbdbd;
+  box-sizing: border-box;
+}
+
+/* Range Override Geometry Rules */
+.paper-slider--range .paper-slider__thumb {
+  left: 0%; /* Reset anchor point base */
+}
+.paper-slider--range .thumb-min { left: 20%; }
+.paper-slider--range .thumb-max { left: 80%; }
