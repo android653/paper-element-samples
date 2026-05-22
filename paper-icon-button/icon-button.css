@@ -1,0 +1,32 @@
+.paper-icon-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%; /* Makes it perfectly round */
+  background-color: transparent;
+  color: #424242; /* Dark gray icon color */
+  cursor: pointer;
+  overflow: hidden; /* Keeps the ripple inside the circle */
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+/* Gray background circle on hover */
+.paper-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Deeper background highlight when pressed */
+.paper-icon-button:active {
+  background-color: rgba(0, 0, 0, 0.14);
+}
+
+/* Centers the icon perfectly */
+.material-icons {
+  font-size: 24px;
+  user-select: none;
+}
