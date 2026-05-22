@@ -1,0 +1,42 @@
+<div class="progress-showcase-container">
+  <h3>Standard Linear Progress Bars (Jake)</h3>
+
+  <!-- 1. STANDARD TEXT / PRIMARY PROGRESS BAR -->
+  <div class="paper-progress-wrapper variant-text">
+    <label class="progress-label">Task Completion (Jake)</label>
+    <!-- We use inline styles to dynamically control the progress widths -->
+    <div class="paper-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70">
+      <div class="progress-secondary-bar" style="width: 90%;"></div>
+      <div class="progress-primary-bar" style="width: 70%;"></div>
+    </div>
+    <div class="readout-caption">70% loaded (Buffered to 90%)</div>
+  </div>
+
+  <!-- 2. TONAL COLOR VARIANT PROGRESS BAR -->
+  <div class="paper-progress-wrapper variant-tonal">
+    <label class="progress-label">Database Analytics Stream (Jake)</label>
+    <div class="paper-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="45">
+      <div class="progress-secondary-bar" style="width: 60%;"></div>
+      <div class="progress-primary-bar" style="width: 45%;"></div>
+    </div>
+  </div>
+
+  <!-- 3. TERTIARY / ERROR DANGER ZONE PROGRESS BAR -->
+  <div class="paper-progress-wrapper variant-error">
+    <label class="progress-label">System Storage Threat Cap (Jake)</label>
+    <div class="paper-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92">
+      <div class="progress-primary-bar" style="width: 92%;"></div>
+    </div>
+  </div>
+
+  <h3>Indeterminate Looping Progress (Jake)</h3>
+
+  <!-- 4. INDETERMINATE PROGRESS BAR -->
+  <div class="paper-progress-wrapper variant-text">
+    <label class="progress-label">Syncing Workspace Caches (Jake)</label>
+    <!-- Drop the "indeterminate" modifier class to trigger continuous loop parsing -->
+    <div class="paper-progress indeterminate" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div class="progress-primary-bar"></div>
+    </div>
+  </div>
+</div>
