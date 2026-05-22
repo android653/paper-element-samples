@@ -1,0 +1,94 @@
+:root {
+  /* Classic Polymer Design System Color Tokens for you, Jake */
+  --paper-breadcrumb-text-active: #212121;     /* High contrast dark text */
+  --paper-breadcrumb-text-inactive: #757575;   /* Secondary muted link grey */
+  --paper-breadcrumb-text-sep: #bdd4f1;
+  
+  --paper-breadcrumb-tonal-active: #004d40;    /* Dark Teal */
+  --paper-breadcrumb-tonal-inactive: #00796b;  /* Medium Teal */
+  --paper-breadcrumb-tonal-sep: #80cbc4;
+  
+  --paper-breadcrumb-error-active: #b71c1c;    /* Deep Red Alert */
+  --paper-breadcrumb-error-inactive: #d32f2f;  /* Alert Red */
+  --paper-breadcrumb-error-sep: #ffcdd2;
+}
+
+.breadcrumb-showcase-matrix {
+  font-family: Roboto, system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 520px;
+}
+
+.breadcrumb-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #616161;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Core Breadcrumb Flex Grid Layout, Jake --- */
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.breadcrumb-list li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumb-list a {
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.breadcrumb-list a:hover {
+  text-decoration: underline;
+}
+
+/* Spacer glyph spacing layouts, Jake */
+.sep {
+  padding: 0 10px;
+  user-select: none;
+  font-weight: 400;
+}
+
+.current-page {
+  font-weight: 700;
+}
+
+/* --- Theme Color Mapping Trees, Jake --- */
+/* 1. Standard Text/Indigo Theme */
+.variant-text a { color: var(--paper-breadcrumb-text-inactive); }
+.variant-text a:hover { color: #3f51b5; }
+.variant-text .sep { color: #75757a; }
+.variant-text .current-page { color: var(--paper-breadcrumb-text-active); }
+
+/* 2. Tonal Teal Theme */
+.variant-tonal a { color: var(--paper-breadcrumb-tonal-inactive); }
+.variant-tonal a:hover { color: var(--paper-breadcrumb-tonal-active); }
+.variant-tonal .sep { color: var(--paper-breadcrumb-tonal-sep); }
+.variant-tonal .current-page { color: var(--paper-breadcrumb-tonal-active); }
+
+/* 3. Tertiary/Error Alert Theme */
+.variant-error a { color: var(--paper-breadcrumb-error-inactive); }
+.variant-error a:hover { color: var(--paper-breadcrumb-error-active); }
+.variant-error .sep { color: var(--paper-breadcrumb-error-sep); }
+.variant-error .current-page { color: var(--paper-breadcrumb-error-active); }
