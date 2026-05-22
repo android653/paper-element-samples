@@ -1,0 +1,105 @@
+.chip-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 16px 0;
+}
+
+/* Core Paper Chip Blueprint Specs */
+.paper-chip {
+  position: relative;
+  overflow: hidden;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #e0e0e0;
+  color: #212121;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  box-sizing: border-box;
+  cursor: default;
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Structural Label Spacing */
+.paper-chip__label {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Leading Decorative Icons Layout */
+.paper-chip__icon {
+  margin-right: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+/* Circular Leading Profile Avatars */
+.paper-chip__avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #3f51b5;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -8px;
+  margin-right: 8px;
+  font-size: 11px;
+}
+
+/* Interactive Action Chip Variations */
+.paper-chip--action {
+  cursor: pointer;
+}
+.paper-chip--action:hover {
+  background-color: #d5d5d5;
+}
+
+/* Selectable Filter State Mechanics */
+.paper-chip--filterable {
+  cursor: pointer;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 0 12px;
+}
+.paper-chip--filterable:hover {
+  background-color: #e5e5e5;
+}
+
+.paper-chip--filterable .paper-chip__checkmark {
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-right: 0;
+  font-weight: bold;
+  color: #3f51b5;
+  transition: width 0.15s ease, opacity 0.15s ease, margin 0.15s ease;
+}
+
+/* Active Selected Style Rules toggled via JavaScript class */
+.paper-chip--filterable.is-selected {
+  background-color: #e8eaf6;
+  border-color: #3f51b5;
+  color: #3f51b5;
+}
+.paper-chip--filterable.is-selected .paper-chip__checkmark {
+  width: 12px;
+  opacity: 1;
+  margin-right: 6px;
+}
+
+/* Error/Alert Chip Variations */
+.paper-chip--error {
+  background-color: #ffebee;
+  color: #db4437;
+  border: 1px solid #ffcdd2;
+}
