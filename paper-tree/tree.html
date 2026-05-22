@@ -1,0 +1,44 @@
+<!-- Include Google Material Icons for the folder and file shapes -->
+<link href="https://googleapis.com" rel="stylesheet">
+
+<div class="paper-tree">
+  <ul class="tree-root">
+    
+    <!-- Branch Item (Folder) -->
+    <li>
+      <details open>
+        <summary class="tree-node">
+          <span class="material-icons arrow">chevron_right</span>
+          <span class="material-icons icon">folder</span>
+          <span class="node-label">Project Files</span>
+        </summary>
+        
+        <!-- Nested Children -->
+        <ul class="tree-branch">
+          <li>
+            <details>
+              <summary class="tree-node">
+                <span class="material-icons arrow">chevron_right</span>
+                <span class="material-icons icon">folder</span>
+                <span class="node-label">Images</span>
+              </summary>
+              <ul class="tree-branch">
+                <li class="tree-leaf">
+                  <span class="material-icons icon">image</span>
+                  <span class="node-label">logo.png</span>
+                </li>
+              </ul>
+            </details>
+          </li>
+          
+          <!-- Leaf Item (File) -->
+          <li class="tree-leaf">
+            <span class="material-icons icon">description</span>
+            <span class="node-label">index.html</span>
+          </li>
+        </ul>
+      </details>
+    </li>
+    
+  </ul>
+</div>
