@@ -1,0 +1,99 @@
+.switch-group {
+  padding: 16px;
+}
+
+/* Flex layout wrapper to align switch and label */
+.paper-switch-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #212121;
+}
+
+/* Hidden native input layer handles form data accessibility */
+.paper-switch {
+  position: relative;
+  width: 36px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.paper-switch__native {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* Background Track Geometry */
+.paper-switch__track {
+  position: absolute;
+  width: 36px;
+  height: 14px;
+  background-color: #9e9e9e;
+  border-radius: 7px;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Sliding Navigation Control Knob */
+.paper-switch__thumb {
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Interactive Active Ripple Overlay Layer */
+.paper-switch__thumb::after {
+  content: '';
+  position: absolute;
+  top: -14px; left: -14px; right: -14px; bottom: -14px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(0);
+  transition: transform 0.16s ease;
+}
+
+/* Hover and active element trigger states */
+.paper-switch:hover .paper-switch__thumb::after,
+.paper-switch__native:focus-visible ~ .paper-switch__thumb::after {
+  transform: scale(1);
+}
+
+/* ------------------------------------------------------------- */
+/* Active Checked Rule States (Color palette shifts to theme accent) */
+/* ------------------------------------------------------------- */
+
+/* Track shifts to faded Indigo tint */
+.paper-switch__native:checked ~ .paper-switch__track {
+  background-color: #3f51b5;
+  opacity: 0.5;
+}
+
+/* Thumb slides cleanly to the right edge and updates to solid Indigo */
+.paper-switch__native:checked ~ .paper-switch__thumb {
+  transform: translateX(16px);
+  background-color: #3f51b5;
+}
+
+/* Active ripple accent shifts to high-contrast translucent Indigo glow */
+.paper-switch__native:checked ~ .paper-switch__thumb::after {
+  background-color: rgba(63, 81, 181, 0.12);
+}
