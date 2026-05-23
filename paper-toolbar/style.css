@@ -1,0 +1,39 @@
+/* Core Layout Configuration */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #fcfbfe;
+  color: #1d1b20;
+}
+
+.content {
+  padding: 32px 24px;
+  max-width: 800px;
+  margin: 0 auto;
+  height: 150vh; /* Adds scroll depth to test the sticky pinning feature */
+}
+
+/* Light DOM Slotted Button Layout Style rules */
+.toolbar-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Interactive Feedback Hover & Press Tinting */
+.toolbar-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.toolbar-btn:active {
+  background-color: rgba(255, 255, 255, 0.16);
+}
