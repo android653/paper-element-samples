@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paper Search Bar Component Demo</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f2f5;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Declarative Custom Web Component usage -->
+  <paper-search-bar id="mySearchBar" placeholder="Search articles, tags, or authors..."></paper-search-bar>
+
+  <script>
+    class PaperSearchBar extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+
+      static get observedAttributes() {
+        return ['placeholder', 'value', 'loading'];
+      }
+
+      connectedCallback() {
+        this.render();
+        this._setupListeners();
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (!this.shadowRoot) return;
+        if (name === 'placeholder') {
+          this.shadowRoot.querySelector('input').placeholder = newValue;
+        } else if (name === 'value') {
+          this.shadowRoot.querySelector('input').value = newValue;
+          this._toggleClearButton(newValue);
+        } else if (name === 'loading') {
+          this._toggleLoadingState(this.hasAttribute('loading'));
+        }
+      }
+
+      // Element API Getters/Setters
+      get value() { return this.shadowRoot ? this.shadowRoot.querySelector('input').value : ''; }
+      set value(val) { this.setAttribute('value', val); }
+
+      _setupListeners() {
+        const input = this.shadowRoot.querySelector('input');
+        const clearBtn = this.shadowRoot.querySelector('.clear-btn');
+
+        input.addEventListener('input', (e) => {
+          this._toggleClearButton(e.target.value);
+          this._dispatch('input', e.target.value);
+        });
+
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            this._dispatch('search', input.value);
+          }
+        });
+
+        clearBtn.addEventListener('click', () => {
+          input.value = '';
+          this._toggleClearButton('');
+          input.focus();
+          this._dispatch('clear', '');
+          this._dispatch('input', '');
+        });
+      }
+
+      _toggleClearButton(query) {
+        const clearBtn = this.shadowRoot.querySelector('.clear-btn');
+        clearBtn.style.display = query.length > 0 ? 'flex' : 'none';
+      }
+
+      _toggleLoadingState(isLoading) {
+        const progress = this.shadowRoot.querySelector('.progress-bar');
+        progress.style.display = isLoading ? 'block' : 'none';
+      }
+
+      _dispatch(eventName, detailValue) {
+        this.dispatchEvent(new CustomEvent(eventName, {
+          bubbles: true,
+          composed: true,
+          detail: { value: detailValue }
+        }));
+      }
+
+      render() {
+        const placeholder = this.getAttribute('placeholder') || 'Search...';
+        const initialValue = this.getAttribute('value') || '';
+
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host {
+              display: block;
+              width: 100%;
+              max-width: 600px;
+            }
+            .search-container {
+              display: flex;
+              align-items: center;
+              background: #ffffff;
+              border-radius: 28px;
+              padding: 4px 16px;
+              box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+              position: relative;
+              overflow: hidden;
+              transition: box-shadow 0.2s ease;
+            }
+            .search-container:focus-within {
+              box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+            }
+            .icon {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 40px;
+              height: 40px;
+              color: #49454F;
+              user-select: none;
+            }
+            input {
+              flex: 1;
+              border: none;
+              outline: none;
+              font-size: 16px;
+              height: 48px;
+              color: #1D1B20;
+              background: transparent;
+              padding: 0 8px;
+            }
+            input::placeholder {
+              color: #49454F;
+              opacity: 0.8;
+            }
+            .clear-btn {
+              display: none; /* Toggled via JS styling context */
+              cursor: pointer;
+              border-radius: 50%;
+              transition: background-color 0.2s;
+            }
+            .clear-btn:hover {
+              background-color: rgba(0, 0, 0, 0.08);
+            }
+            /* Material Design Line Progress Tracking */
+            .progress-bar {
+              display: none;
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 100%;
+              height: 3px;
+              background-color: #e8def8;
+              overflow: hidden;
+            }
+            .progress-bar::after {
+              content: '';
+              position: absolute;
+              width: 40%;
+              height: 100%;
+              background-color: #6750A4;
+              animation: loading-anim 1.5s infinite linear;
+            }
+            @keyframes loading-anim {
+              0% { left: -40%; }
+              100% { left: 100%; }
+            }
+          </style>
+
+          <div class="search-container">
+            <!-- Search Icon (SVG) -->
+            <div class="icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            </div>
+            
+            <input type="text" placeholder="${placeholder}" value="${initialValue}" autocomplete="off">
+            
+            <!-- Clear Icon Action Button (SVG) -->
+            <div class="icon clear-btn" title="Clear search">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </div>
+
+            <!-- Discrete Loading Track Line -->
+            <div class="progress-bar"></div>
+          </div>
+        `;
+        this._toggleClearButton(initialValue);
+        this._toggleLoadingState(this.hasAttribute('loading'));
+      }
+    }
+
+    customElements.define('paper-search-bar', PaperSearchBar);
+
+    // --- Production JavaScript Usage Hook Execution ---
+    const searchBar = document.getElementById('mySearchBar');
+
+    // Emits smoothly on every continuous stroke change
+    searchBar.addEventListener('input', (e) => {
+      console.log('Typing filter query values:', e.detail.value);
+    });
+
+    // Emits clean explicitly only when pushing down the Enter Key
+    searchBar.addEventListener('search', (e) => {
+      console.log('Dispatched explicit search execution for:', e.detail.value);
+      
+      // Simulate remote API loading lifecycle state
+      searchBar.setAttribute('loading', '');
+      setTimeout(() => {
+        searchBar.removeAttribute('loading');
+      }, 2000);
+    });
+
+    searchBar.addEventListener('clear', () => {
+      console.log('Search clear wiped active buffer strings.');
+    });
+  </script>
+
+</body>
+</html>
